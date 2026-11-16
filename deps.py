@@ -1,7 +1,7 @@
 from fastapi import Depends
 from pwdlib import PasswordHash
 from sqlalchemy.orm import Session
-from typing import Annotated
+from typing import Annotated, TypeAlias
 from database import engine
 
 
@@ -11,4 +11,4 @@ def get_db():
   with Session(engine) as db:
     yield db
 
-SessionDep = Annotated[Session, Depends(get_db)]
+SessionDep: TypeAlias = Annotated[Session, Depends(get_db)]
